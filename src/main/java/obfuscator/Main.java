@@ -8,7 +8,9 @@ public class Main {
         String input = Files.readString(Paths.get("src/resources/input.mc"));
         Obfuscator obfuscator = new Obfuscator();
         String output = obfuscator.obfuscate(input);
-        System.out.println("==== Obfuscated Code ====");
-        System.out.println(output);
+        System.out.println(" ");
+        Files.writeString(Paths.get("src/resources/output.mc"), output);
+
+        System.out.println("\nSaved to src/resources/output.mc ✅");
     }
 }
