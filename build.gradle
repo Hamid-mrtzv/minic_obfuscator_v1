@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'antlr'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    antlr 'org.antlr:antlr4:4.13.1'
+    implementation 'org.antlr:antlr4-runtime:4.13.1'
+}
+
+generateGrammarSource {
+    maxHeapSize = "64m"
+    arguments += ['-visitor']
+    outputDirectory = file("build/generated-src/antlr/main")
+}
+
+sourceSets.main.java.srcDirs += 'build/generated-src/antlr/main'
+
+compileJava.dependsOn generateGrammarSource
